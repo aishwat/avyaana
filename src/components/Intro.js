@@ -24,7 +24,7 @@ const useStyles = makeStyles((theme) => ({
   profile_pic: {
     maxWidth: 400,
     height: 400,
-    backgroundImage: `url(${Profile})`,
+    // backgroundImage: `url(${Profile})`,
     backgroundRepeat: "no-repeat",
     backgroundPosition: "center top",
     backgroundSize: "cover",
@@ -71,12 +71,12 @@ const Intro = () => {
       <Grid item xs={12} sm={6} className={classes.border}>
         <div className={classes.profile_text}>
           <Typography variant="h5" component="h2" color="primary">
-            Welcome to Leena's home page
+            Welcome to Avyaana's home page
           </Typography>
-          <Typography className={classes.title} color="secondary" gutterBottom>
-            Graduate Assistant at Oklahoma State University
-          </Typography>
-          <Contact />
+          {/*<Typography className={classes.title} color="secondary" gutterBottom>*/}
+          {/*  Cute little monster*/}
+          {/*</Typography>*/}
+          {/*<Contact />*/}
           <Typography
             variant="subtitle1"
             className={classes.wrapIcon}
