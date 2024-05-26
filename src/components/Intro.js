@@ -90,7 +90,7 @@ const Intro = () => {
               margin: "40px"
             }}
           >
-            <Icon className={"fas fa-wrench"} style={{marginRight:"20px"}}/> Site under construction !!
+            
           </Typography>
         </div>
       </Grid>
