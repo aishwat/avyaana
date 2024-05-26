@@ -1,8 +1,9 @@
 import React from "react";
+import { useNavigate } from 'react-router-dom';
 import { makeStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
-// import Profile from "../assets/profile_pic.jpeg";
+import Profile from "../assets/profile_pic.jpeg";
 import Typography from "@material-ui/core/Typography";
 // import Contact from "./Contact";
 import Icon from "@material-ui/core/Icon";
@@ -24,7 +25,7 @@ const useStyles = makeStyles((theme) => ({
   profile_pic: {
     maxWidth: 400,
     height: 400,
-    // backgroundImage: `url(${Profile})`,
+    backgroundImage: `url(${Profile})`,
     backgroundRepeat: "no-repeat",
     backgroundPosition: "center top",
     backgroundSize: "cover",
@@ -55,6 +56,7 @@ const useStyles = makeStyles((theme) => ({
 
 const Intro = () => {
   const classes = useStyles();
+  const navigate = useNavigate();
   const [activeStep, setActiveStep] = React.useState(0);
 
   const onMouseEnterHandler = (id) => (e) => {
@@ -64,6 +66,9 @@ const Intro = () => {
   const onMouseLeaveHandler = (id) => (e) => {
     console.log("leave handler", id);
     setActiveStep(0);
+  };
+  const onClickHandler = () => {
+    navigate('/pics');
   };
 
   return (
@@ -99,6 +104,7 @@ const Intro = () => {
         className={classes.border}
         onMouseEnter={onMouseEnterHandler("profile_pic")}
         onMouseLeave={onMouseLeaveHandler("profile_pic")}
+        onClick={onClickHandler}
       >
         <Paper
           className={classes.profile_pic}

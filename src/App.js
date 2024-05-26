@@ -1,8 +1,13 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import "./App.css";
 // import { makeStyles } from "@material-ui/core/styles";
-import Intro from "./components/Intro";
 import { loadCSS } from "fg-loadcss";
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import ProtectedRoute from './components/ProtectedRoute';
+import Login from './components/Login';
+// import Images from './components/Images';
+import Intro from "./components/Intro";
+import Pics from "./components/Pics";
 
 // const useStyles = makeStyles((theme) => ({
 //   root: {
@@ -11,7 +16,7 @@ import { loadCSS } from "fg-loadcss";
 //   },
 // }));
 
-function App() {
+const App = () => {
   useEffect(() => {
     const node = loadCSS(
       "https://use.fontawesome.com/releases/v5.12.0/css/all.css",
@@ -22,25 +27,29 @@ function App() {
       node.parentNode.removeChild(node);
     };
   }, []);
+  const [authenticated, setAuthenticated] = useState(false);
   return (
-    <div className="App">
-      <Intro />
-      {/* <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header> */}
-    </div>
+      <Router>
+        <Routes>
+          <Route path="/login" element={<Login setAuthenticated={setAuthenticated} />} />
+          <Route
+              path="/pics"
+              element={
+                <ProtectedRoute authenticated={authenticated}>
+                  <Pics />
+                </ProtectedRoute>
+              }
+          />
+            {/*<Route path="/pics" element={ <Pics />} />*/}
+            <Route path="/*" element={ <Intro />} />
+        </Routes>
+      </Router>
   );
+  // return (
+  //   <div className="App">
+  //     <Intro />
+  //   </div>
+  // );
 }
 
 export default App;
